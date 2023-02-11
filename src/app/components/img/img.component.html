@@ -1,7 +1,13 @@
-<h1> {{ img }} </h1>
 
-<img width="200px" [src]="img" alt="avatar" *ngIf="img; else elseImg">
+
+<h1> Componente de Imagen </h1>
+
+<img width="200" (load)="imgLoaded()" (error)="imgError()" [src]="img" alt="avatar" *ngIf="img; else elseImg">
+
+<!-- Con el evento error el nav hace un request y si no encuentra el dato en internet nos ejecuta la funcion -->
+
+<!-- eL evento load es nativo de las img -->
 
 <ng-template #elseImg>
-  <img src="../../../assets/pexels-photo-14940646.jpeg" alt="">
+  <img [src]="imageDefault" alt="">
 </ng-template>

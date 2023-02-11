@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-img',
@@ -8,6 +8,17 @@ import { Component, Input } from '@angular/core';
 export class ImgComponent {
   // datos del compon
   // img: string = 'Daniel'
-  @Input()img: string = '' // Input representa los props
+  @Input() img: string = '' // Input representa los props
+  @Output() loaded = new EventEmitter<string>()
+  imageDefault: string ='../../../assets/pexels-photo-14940646.jpeg'
+
+  imgError() {
+    this.img = this.imageDefault
+  }
+
+  imgLoaded() {
+    console.log('loaded');
+    this.loaded.emit(this.img);
+  }
 
 }
