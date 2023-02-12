@@ -9,6 +9,8 @@ import { Product } from './models/product.model';
 export class AppComponent {
   imgParent = '';
 
+  showImg = true;
+
   products: Product[] = [
      {
       id: '1',
@@ -39,4 +41,16 @@ export class AppComponent {
   onLoaded(img: string) {
     console.log('lOG PADRE', img);
   }
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+
+  }
+
+  toogleImg() {
+    console.log('Ejecuntando toogle');
+    this.showImg = !this.showImg
+  }
+
 }

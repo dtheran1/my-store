@@ -2,7 +2,9 @@
 
 <h1> Componente de Imagen </h1>
 
-<img width="200" (load)="imgLoaded()" (error)="imgError()" [src]="img" alt="avatar" *ngIf="img; else elseImg">
+<p>{{ counter }}</p>
+
+<img  width="200" height="200px" (load)="imgLoaded()" (error)="imgError()" [src]="img" alt="avatar" *ngIf="img; else elseImg">
 
 <!-- Con el evento error el nav hace un request y si no encuentra el dato en internet nos ejecuta la funcion -->
 
