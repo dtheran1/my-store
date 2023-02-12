@@ -24,9 +24,9 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
   @Output() loaded = new EventEmitter<string>()
   imageDefault: string ='../../../assets/pexels-photo-14940646.jpeg'
 
-  counter = 0
+  // counter = 0
 
-  counterFn: number | undefined
+  // counterFn: number | undefined
 
   constructor() {
     // before render
@@ -48,10 +48,10 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     // aqui si podemos ejecutar codigo async, feching de datos, apis
     // solo corre una vez once time
     console.log('Init', this.img);
-    this.counterFn = window.setInterval(() => {
-      this.counter += 1
-      console.log(this.counter, 'run counter');
-    }, 1000)
+    // this.counterFn = window.setInterval(() => {
+    //   this.counter += 1
+    //   console.log(this.counter, 'run counter');
+    // }, 1000)
   }
 
   ngAfterViewInit(): void {
@@ -63,7 +63,7 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
   ngOnDestroy(): void {
     // sirve para eliminar este componente de la interfaz
     console.log('ngOnDestroy');
-    window.clearInterval(this.counterFn)
+    // window.clearInterval(this.counterFn)
   }
 
   imgError() {
