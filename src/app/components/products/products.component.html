@@ -9,13 +9,16 @@
 <p>
   {{ today | date: 'short' }}
 </p>
-
 <p>
-  {{ date | date:'YYYY*MM*dd' }} // Pipes
+  Hace cuanto: {{ today | timeAgo }}
 </p>
 
 <p>
-  {{ 'HolassAssss' | uppercase }}
+  Hace cuanto: {{ date | timeAgo }} // Pipes
+</p>
+
+<p>
+  {{ 'HolassAssss' | uppercase | reverse }}
 </p>
 
 <div class="products--grid">
