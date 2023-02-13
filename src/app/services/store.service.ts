@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs' // Con esta lib tenemos todos los patrones de observables
 import { Product } from '../models/product.model';
 
 @Injectable({
@@ -7,10 +8,13 @@ import { Product } from '../models/product.model';
 export class StoreService {
   private myShoppingCart:Product[] = []
 
-  constructor() { }
+  // con BehaviorSubject convertimos en un observable esta variable
+  private myCart = new BehaviorSubject<Product[]>([])
+  myCart$ = this.myCart.asObservable();
 
   addProduct(product: Product) {
-    this.myShoppingCart.push(product)
+    this.myShoppingCart.push(product);
+    this.myCart.next(this.myShoppingCart) // Con next transmitimos a los que estan suscriptions a este store
   }
 
   getShoppingCart() {

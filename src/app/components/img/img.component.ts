@@ -11,9 +11,10 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
   // img: string = 'Daniel'
   // @Input() img: string = '' // Input representa los props
 
-  img: string = ''
+  img = ''
 
   // Tambien podemos hacer un set para asegurarnos que un Input tuvo algun cambio.
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('img') // Este 'img' es un alias para que en el componente padre sea llamado con este alias
   set changeImg(newImg: string) {
     this.img = newImg
@@ -22,7 +23,7 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
   }
 
   @Output() loaded = new EventEmitter<string>()
-  imageDefault: string ='../../../assets/pexels-photo-14940646.jpeg'
+  imageDefault ='../../../assets/pexels-photo-14940646.jpeg'
 
   // counter = 0
 
