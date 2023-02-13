@@ -6,6 +6,18 @@
   El total es ${{ total }}
 </p>
 
+<p>
+  {{ today | date: 'short' }}
+</p>
+
+<p>
+  {{ date | date:'YYYY*MM*dd' }} // Pipes
+</p>
+
+<p>
+  {{ 'HolassAssss' | uppercase }}
+</p>
+
 <div class="products--grid">
   <app-product
     *ngFor="let product of products"

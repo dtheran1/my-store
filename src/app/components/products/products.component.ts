@@ -12,7 +12,11 @@ import { ProductsService } from '../../services/products.service'
 export class ProductsComponent {
   total = 0
   myShoppingCart:Product[] = []
-  products: Product[] = []
+  products: Product[] = [];
+
+  today = new Date()
+
+  date= new Date(2021, 1, 21)
 
   constructor(
     private storeService: StoreService,
