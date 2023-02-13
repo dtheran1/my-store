@@ -25,10 +25,10 @@ export class ProductsComponent {
     this.myShoppingCart = this.storeService.getShoppingCart();
   }
 
-  OnInit(): void {
+  ngOnInit(): void {
     this.productsService.getAllProducts() // Como es una peticion asyncrona lo devemos ejecutar desde el init
     .subscribe(data => {
-      console.log(data)
+      // console.log(data)
       this.products = data
     }) // El subscribe es un observable que maneja angular
   }

@@ -13,7 +13,7 @@ export class NavComponent {
     private storeService: StoreService
   ) {}
 
-  OnInit(): void {
+  ngOnInit(): void {
     this.storeService.myCart$.subscribe(products => {
       this.counter = products.length
     })

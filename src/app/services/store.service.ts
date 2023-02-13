@@ -8,7 +8,7 @@ import { Product } from '../models/product.model';
 export class StoreService {
   private myShoppingCart:Product[] = []
 
-  // con BehaviorSubject convertimos en un observable esta variable
+  // con BehaviorSubject convertimos en un observable esta variable Con esto le damos reactividad
   private myCart = new BehaviorSubject<Product[]>([])
   myCart$ = this.myCart.asObservable();
 
