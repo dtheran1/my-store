@@ -1,5 +1,8 @@
 # MyStore
 
+![image](https://user-images.githubusercontent.com/83596975/218572284-1b479083-b840-4e76-b370-8f4feed695d7.png)
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.5.
 
 ## Development server
