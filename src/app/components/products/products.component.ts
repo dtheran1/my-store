@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
 
 import { StoreService } from '../../services/store.service'
+import { ProductsService } from '../../services/products.service'
 
 @Component({
   selector: 'app-products',
@@ -11,37 +12,21 @@ import { StoreService } from '../../services/store.service'
 export class ProductsComponent {
   total = 0
   myShoppingCart:Product[] = []
-  products: Product[] = [
-     {
-      id: '1',
-      name: 'EL mejor juguete',
-      price: 565,
-      image: './assets/images/toy.jpg'
-    },
-    {
-      id: '2',
-      name: 'Bicicleta casi nueva',
-      price: 356,
-      image: './assets/images/bike.jpg'
-    },
-    {
-      id: '3',
-      name: 'Colleción de albumnes',
-      price: 34,
-      image: './assets/images/album.jpg'
-    },
-    {
-      id: '4',
-      name: 'Mis libros',
-      price: 23,
-      image: './assets/images/books.jpg'
-    },
-  ]
+  products: Product[] = []
 
   constructor(
-    private storeService: StoreService
+    private storeService: StoreService,
+    private productsService: ProductsService
   ) {
     this.myShoppingCart = this.storeService.getShoppingCart();
+  }
+
+  ngOnInit(): void {
+    this.productsService.getAllProducts() // Como es una peticion asyncrona lo devemos ejecutar desde el init
+    .subscribe(data => {
+      console.log(data)
+      this.products = data
+    }) // El subscribe es un observable que maneja angular
   }
 
   onAddToShoppingCart(product: Product) {
