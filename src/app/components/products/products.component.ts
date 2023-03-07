@@ -13,6 +13,17 @@ export class ProductsComponent {
   total = 0
   myShoppingCart:Product[] = []
   products: Product[] = [];
+  productChosen: Product ={
+    id: '',
+    price: 0,
+    images: [],
+    title: '',
+    description: '',
+    category: {
+      id: '',
+      name: ''
+    }
+  }
 
   today = new Date()
 
@@ -45,10 +56,12 @@ export class ProductsComponent {
   }
 
   onShowDetail(id: string) {
-    console.log(id);
+    // console.log(id);
     this.productsService.getProduct(id).subscribe(data => {
-      console.log(data);
-      // this.showProductDetail = true
+      console.log('Daniel');
+      this.showProductDetail = true
+      this.productChosen = data
+
     })
 
   }

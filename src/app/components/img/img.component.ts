@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnChanges, OnInit, AfterViewInit, OnDestroy, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-img',
@@ -6,7 +6,7 @@ import { Component, Input, Output, EventEmitter, OnChanges, OnInit, AfterViewIni
   styleUrls: ['./img.component.scss']
 })
 
-export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
+export class ImgComponent implements OnInit, AfterViewInit, OnDestroy {
   // datos del compon
   // img: string = 'Daniel'
   // @Input() img: string = '' // Input representa los props
@@ -18,7 +18,7 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
   @Input('img') // Este 'img' es un alias para que en el componente padre sea llamado con este alias
   set changeImg(newImg: string) {
     this.img = newImg
-    console.log('change just img =>', this.img);
+    // console.log('change just img =>', this.img);
     // code
   }
 
@@ -33,16 +33,16 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     // before render
     // No correr cod async
     // El contructor solo se ejecuta una vez
-    console.log('Constructor', this.img);
+    // console.log('Constructor', this.img);
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    //Before y durante Render
-    // es un wach de los inputs
-    // se ejecuta cada vez que se actualice un valor del componente
-    // console.log('ngOnChanges', this.img);
-    console.log('ngOnChanges', changes);
-  }
+  // ngOnChanges(changes: SimpleChanges) {
+  //   //Before y durante Render
+  //   // es un wach de los inputs
+  //   // se ejecuta cada vez que se actualice un valor del componente
+  //   // console.log('ngOnChanges', this.img);
+  //   console.log('ngOnChanges', changes);
+  // }
 
   ngOnInit(): void {
     // before render
@@ -72,7 +72,7 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
   }
 
   imgLoaded() {
-    console.log('loaded');
+    // console.log('loaded');
     this.loaded.emit(this.img);
   }
 }

@@ -11,11 +11,11 @@ export class AppComponent {
   showImg = true;
 
   onLoaded(img: string) {
-    console.log('lOG PADRE', img);
+    // console.log('lOG PADRE', img);
   }
 
   toogleImg() {
-    console.log('Ejecuntando toogle');
+    // console.log('Ejecuntando toogle');
     this.showImg = !this.showImg
   }
 
