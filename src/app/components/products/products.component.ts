@@ -18,6 +18,8 @@ export class ProductsComponent {
 
   date= new Date(2021, 1, 21)
 
+  showProductDetail = false
+
   constructor(
     private storeService: StoreService,
     private productsService: ProductsService
@@ -36,5 +38,18 @@ export class ProductsComponent {
   onAddToShoppingCart(product: Product) {
     this.storeService.addProduct(product)
     this.total = this.storeService.getTotal()
+  }
+
+  toggleProductDetail() {
+    this.showProductDetail = !this.showProductDetail
+  }
+
+  onShowDetail(id: string) {
+    console.log(id);
+    this.productsService.getProduct(id).subscribe(data => {
+      console.log(data);
+      // this.showProductDetail = true
+    })
+
   }
 }
