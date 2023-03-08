@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Product } from 'src/app/models/product.model';
+import { CreateProductDTO, Product } from 'src/app/models/product.model';
 
 import { StoreService } from '../../services/store.service'
 import { ProductsService } from '../../services/products.service'
@@ -16,7 +16,7 @@ export class ProductsComponent {
   productChosen: Product ={
     id: '',
     price: 0,
-    images: [],
+    images: [''],
     title: '',
     description: '',
     category: {
@@ -61,8 +61,20 @@ export class ProductsComponent {
       console.log('Daniel');
       this.showProductDetail = true
       this.productChosen = data
-
     })
+  }
 
+  createNewProduct () {
+    const dto: CreateProductDTO = {
+      title: 'Nueo producto',
+      description: 'bla bla bla ',
+      images: [`https://placeimg.com/640/480/any?random=${Math.random()}`],
+      price: 1000,
+      categoryId: 1
+    }
+    this.productsService.create(dto).subscribe(data => {
+      console.log(data)
+      this.products.unshift(data)
+    })
   }
 }
