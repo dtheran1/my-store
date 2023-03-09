@@ -73,8 +73,22 @@ export class ProductsComponent {
       categoryId: 1
     }
     this.productsService.create(dto).subscribe(data => {
-      console.log(data)
       this.products.unshift(data)
     })
+  }
+
+  updateProduct() {
+    const changes: Partial<CreateProductDTO> = {
+      title: 'CR77777777',
+    }
+
+    const id = this.productChosen.id
+
+    this.productsService.update(id, changes).subscribe(data => {
+      const productIndex = this.products.findIndex(item => item.id === id)
+      this.products[productIndex] = data
+      this.productChosen = data
+    })
+
   }
 }

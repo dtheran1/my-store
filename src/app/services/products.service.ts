@@ -24,4 +24,8 @@ export class ProductsService {
   create(dto: CreateProductDTO) {
     return this.http.post<Product>(this.apiURL, dto)
   }
+
+  update(id: string, dto: Partial <CreateProductDTO>){
+    return this.http.put<Product>(`${this.apiURL}/${id}`, dto)
+  }
 }
