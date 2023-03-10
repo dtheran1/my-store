@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http'
 import { CreateProductDTO, Product } from '../models/product.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  private apiURL='https://young-sands-07814.herokuapp.com/api/products'
+  private apiURL=`${environment.API_URL}/api/products`
 
   constructor(
     private http: HttpClient
