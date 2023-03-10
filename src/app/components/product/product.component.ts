@@ -16,7 +16,8 @@ export class ProductComponent {
     category: {
       id: '',
       name: ''
-    }
+    },
+    taxes: 0
   }
   @Output() addedProduct = new EventEmitter<Product>();
   @Output() showProduct = new EventEmitter<string>();

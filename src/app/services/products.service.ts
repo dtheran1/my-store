@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http'
+import { HttpClient, HttpErrorResponse, HttpParams, HttpStatusCode } from '@angular/common/http'
 import { CreateProductDTO, Product } from '../models/product.model';
 import { environment } from '../../environments/environment';
+import { catchError, map, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -28,10 +29,34 @@ export class ProductsService {
     return this.http.get<Product[]>(`${this.apiURL}`, {
       params: { limit, offset }
     })
+
+    .pipe(
+      map(products => products.map(item => { // Agregando un nuevo campo desde el front, el map viene del rxjs
+        return {
+          ...item,
+          taxes: .19* item.price
+        }
+      }))
+    )
   }
 
   getProduct(id: string) {
     return this.http.get<Product>(`${this.apiURL}/${id}`)
+    .pipe(
+      catchError((error: HttpErrorResponse)=> {
+        if (error.status === HttpStatusCode.Conflict) {
+          return throwError('Algo esta fallando en el server')
+        }
+        if (error.status === HttpStatusCode.NotFound) {
+          return throwError('El producto no existe')
+        }
+        if (error.status === HttpStatusCode.Unauthorized) {
+          return throwError('No tienes acceso a esto')
+        }
+
+        return throwError('Ups algo salio mal')
+      })
+    )
   }
 
   create(dto: CreateProductDTO) {

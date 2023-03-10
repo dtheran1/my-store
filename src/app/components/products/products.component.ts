@@ -34,6 +34,8 @@ export class ProductsComponent {
   limit = 10;
   offset= 0
 
+  statusDetail: 'loading' | 'success' | 'error' | 'init' = 'init'
+
   constructor(
     private storeService: StoreService,
     private productsService: ProductsService
@@ -59,11 +61,16 @@ export class ProductsComponent {
   }
 
   onShowDetail(id: string) {
-    // console.log(id);
+    this.statusDetail = 'loading'
+    this.showProductDetail = true
+
     this.productsService.getProduct(id).subscribe(data => {
-      console.log('Daniel');
-      this.showProductDetail = true
+      this.statusDetail = 'success'
       this.productChosen = data
+    },
+    response => {
+      console.log('Error: ' + response);
+      this.statusDetail = 'error'
     })
   }
 
