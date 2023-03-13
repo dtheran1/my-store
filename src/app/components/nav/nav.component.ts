@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { User } from 'src/app/models/user.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { StoreService } from '../../services/store.service'
 @Component({
   selector: 'app-nav',
@@ -9,8 +11,11 @@ export class NavComponent {
   activeMenu = false;
   counter = 0
 
+  profile: User | null = null
+
   constructor(
-    private storeService: StoreService
+    private storeService: StoreService,
+    private loginAndProfile: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -21,6 +26,13 @@ export class NavComponent {
 
   toogleMenu() {
     this.activeMenu = !this.activeMenu
+  }
+
+  logAndProfile() {
+    this.loginAndProfile.loginAndGetProfile('daniel@daniel.com', 'daniel')
+    .subscribe(data => {
+      this.profile = data
+    })
   }
 
 }

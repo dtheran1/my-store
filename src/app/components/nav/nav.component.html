@@ -32,7 +32,13 @@
       </ul>
     </nav>
     <div class="info">
-      <div class="account">daniel@gmail.com</div>
+      <div *ngIf="!profile" class="account">
+        <button (click)="logAndProfile()">Inicia Sesion</button>
+      </div>
+      <div *ngIf="profile" class="account">
+        {{ profile.email }}
+      </div>
+
       <div class="cart">
         <a href="">
           <img src="../../../assets/svg/icon_shopping_cart.svg" alt="logo">

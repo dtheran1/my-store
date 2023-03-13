@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from './services/auth.service';
+import { UsersService } from './services/users.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +10,33 @@ import { Component } from '@angular/core';
 export class AppComponent {
   imgParent = '';
 
+  token = ''
+
   showImg = true;
+
+  constructor(
+    private authService: AuthService,
+    private userService: UsersService
+  ) { }
+
+  createUser() {
+    this.userService.create({
+      name: 'Daniel',
+      email: 'daniel@daniel.com',
+      password: 'daniel'
+    })
+    .subscribe(data => {
+      console.log(data);
+
+    })
+  }
+
+  login() {
+    this.authService.login('daniel@daniel.com', 'daniel')
+    .subscribe(data => {
+      this.token = data.access_token
+    })
+  }
 
   onLoaded(img: string) {
     // console.log('lOG PADRE', img);

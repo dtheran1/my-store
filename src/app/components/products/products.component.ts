@@ -3,6 +3,7 @@ import { CreateProductDTO, Product } from 'src/app/models/product.model';
 
 import { StoreService } from '../../services/store.service'
 import { ProductsService } from '../../services/products.service'
+import { switchMap, zip } from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -48,6 +49,8 @@ export class ProductsComponent {
     .subscribe(data => {
       this.products = data
       this.offset += this.limit
+
+
     }) // El subscribe es un observable que maneja angular
   }
 
@@ -71,6 +74,25 @@ export class ProductsComponent {
     response => {
       console.log('Error: ' + response);
       this.statusDetail = 'error'
+    })
+  }
+
+  readAndUpdate(id: string) {
+    this.productsService.getProduct(id)
+    .pipe(
+      switchMap((product) => {
+        return this.productsService.update(product.id, {title:'Titulo cambiado'})
+      })
+    )
+    .subscribe(data=> {
+      console.log(data)
+    })
+
+    this.productsService.fetchReadAndUpdate(id, {title: 'change'})
+    .subscribe(response => {
+      const [read, update] = response
+      console.log(read, update);
+
     })
   }
 
